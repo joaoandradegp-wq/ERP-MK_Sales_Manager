@@ -1,0 +1,1 @@
+Provider=Microsoft.Jet.OLEDB.4.0;Data Source='C:\MK\Database\DBMKM.mdb';Persist Security Info=False;Jet OLEDB:Database Password=604702

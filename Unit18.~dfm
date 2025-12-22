@@ -1,0 +1,587 @@
+object Form18: TForm18
+  Left = 302
+  Top = 90
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'CLIENTE - LISTAGEM DE COMPRAS'
+  ClientHeight = 639
+  ClientWidth = 753
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnActivate = FormActivate
+  OnClose = FormClose
+  OnDestroy = FormDestroy
+  PixelsPerInch = 96
+  TextHeight = 13
+  object fechar: TSpeedButton
+    Left = 709
+    Top = 593
+    Width = 36
+    Height = 29
+    Glyph.Data = {
+      0E060000424D0E06000000000000360000002800000016000000160000000100
+      180000000000D8050000C30E0000C30E00000000000000000000FFFFFFF2F2F2
+      F2F2F2D3D3D3E8E8E8F5F5F5DBDBDBDDDDDDECECECEEEEEED3D3D3EBEBEBF7F7
+      F723230F4F4F00B2B2A8E9E9E9D6D6D6EBEBEBFAFAFAFFFFFFFFFFFF0000FFFF
+      FFF0F0F0D8D8D8EDEDEDEAEAEADFDFDFDCDCDCF4F4F4E6E6E6D7D7D7F2F2F2E7
+      E7E7DDDDDD4C4C0CFFFF006868119B9B9BF4F4F4E7E7E7DBDBDBE6E6E6FFFFFF
+      0000D3D3D3E4E4E4EFEFEFE4E4E4D8D8D8EDEDEDF3F3F3D3D3D3E7E7E7F1F1F1
+      DFDFDFDBDBDBECECEC4D4D0DFFFF008D8D00515105878781DFDFDFEDEDEDECEC
+      ECD3D3D30000E6E6E6EDEDEDE1E1E1DBDBDBF5F5F5E3E3E3DCDCDCEAEAEAEAEA
+      EAE0E0E0DBDBDBF6F6F6E3E3E34D4D0DFFFF008F8F007F7F0056560DA1A1A1E2
+      E2E2DBDBDBF3F3F300004B4B4B5050504E4E4E4848484F4F4F5050504A4A4A4C
+      4C4C444444F0F0F0F3F3F3D3D3D3E7E7E74E4E0EFFFF008F8F007F7F007D7D00
+      4C4C0D3232324848484E4E4E0000BFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBF
+      BFBFBFBFBFBF4A4A4ADFDFDFDFDFDFE9E9E9EBEBEB4D4D0DFFFF008F8F007F7F
+      007F7F00474700636363BFBFBFBFBFBF0000BFBFBFBFBFBFBFBFBFBFBFBFBFBF
+      BFBFBFBFB0B0B0BFBFBF4040403F3F3F3737373737373F3F3F434303FFFF008F
+      8F007F7F007F7F00474700636363BFBFBFBFBFBF0000BFBFBFBFBFBFBFBFBFBF
+      BFBFBFBFBFBFBFBF3D3D3D8F8F8F3E3E3E7F7F7F7F7F7F7F7F7F7F7F7F474707
+      FFFF008F8F007F7F007F7F00474700636363BFBFBFBFBFBF0000BFBFBFBFBFBF
+      BFBFBFBFBFBFBFBFBFBFBFBF3C3C304D4D141515137F7F7F7F7F7F7F7F7F7F7F
+      7F474707FFFF008D8D007777007D7D00474700636363BFBFBFBFBFBF0000BFBF
+      BFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBF4646309A9A004545046161617F7F7F7F
+      7F7F7F7F7F474707FFFF005F5F08171717676700474700636363BFBFBFBFBFBF
+      0000BFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBF474727EDED0092920045450E
+      6363637F7F7F7F7F7F474707FFFF004747276B6B6B676700474700636363BFBF
+      BFBFBFBF0000AEAEAE57574531310A272700272700272700424200FFFF00F9F9
+      009898004242006363637F7F7F474707FFFF007E7E002727006E6E0047470063
+      6363BFBFBFBFBFBF00008989898C8C13CFCF01CFCF00CFCF00CFCF00D5D500FF
+      FF00FFFF00EDED0098980045450E616161474707FFFF008F8F007F7F007F7F00
+      474700636363BFBFBFBFBFBF0000898989A1A113FEFE2CFFFFAFFFFFAFFFFFAF
+      FFFFAFFFFFAFFFFFDBFFFF6DE3E3004B4B095B5B5B474707FFFF008F8F007F7F
+      007F7F00474700636363BFBFBFBFBFBF0000A7A7A76F6F4879790C7A7A0A7A7A
+      0A7A7A0A8A8A09FFFF3EFFFF70E4E4005F5F005858587F7F7F474707FFFF008F
+      8F007F7F007F7F00474700636363BFBFBFBFBFBF0000BFBFBFB1B1B1A9A9A9A9
+      A9A9A9A9A9A9A9A94C4C2CFFFF0DE6E6075959085858537F7F7F7F7F7F474707
+      FFFF008F8F007F7F007F7F00474700636363BFBFBFBFBFBF0000BFBFBFBFBFBF
+      BFBFBFBFBFBFBFBFBFBFBFBF505030E3E3005F5F035757577F7F7F7F7F7F7F7F
+      7F474707FFFF008F8F007F7F007F7F00474700636363BFBFBFBFBFBF0000BFBF
+      BFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBF4242356E6E2521211B7F7F7F7F7F7F7F
+      7F7F7F7F7F5E5E52999906D5D5008787007F7F00474700636363BFBFBFBFBFBF
+      0000BFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBF7070708888884444447F7F7F
+      7F7F7F7F7F7F7F7F7F7F7F7F565656999906DBDB00898900474700636363BFBF
+      BFBFBFBF0000BFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBF4444
+      447F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F5E5E529B9B03D7D7004C4C0076
+      7676BFBFBFBFBFBF0000BFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBF
+      BFBF4141415656565656565656565656565656565656565656562E2E2E888807
+      65650C888888BFBFBFBFBFBF0000BFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBF
+      BFBFBFBFBFBF9696968989898989898989898989898989898989898989898989
+      89898989898989B1B1B1BFBFBFBFBFBF0000}
+    OnClick = fecharClick
+  end
+  object Bevel1: TBevel
+    Left = 0
+    Top = 53
+    Width = 753
+    Height = 9
+    Shape = bsTopLine
+  end
+  object Bevel2: TBevel
+    Left = 0
+    Top = 7
+    Width = 753
+    Height = 4
+    Shape = bsTopLine
+  end
+  object Label11: TLabel
+    Left = 14
+    Top = 26
+    Width = 44
+    Height = 16
+    Caption = 'Cliente:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label1: TLabel
+    Left = 14
+    Top = 72
+    Width = 40
+    Height = 16
+    Caption = 'Status:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 189
+    Top = 72
+    Width = 32
+    Height = 16
+    Caption = 'Data:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 8
+    Top = 117
+    Width = 65
+    Height = 17
+    AutoSize = False
+    Caption = 'Mostrando:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 74
+    Top = 117
+    Width = 98
+    Height = 13
+    Caption = 'Nenhum Registro'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Bevel5: TBevel
+    Left = -1
+    Top = 104
+    Width = 754
+    Height = 9
+    Shape = bsTopLine
+  end
+  object SpeedButton1: TSpeedButton
+    Left = 405
+    Top = 69
+    Width = 27
+    Height = 22
+    Enabled = False
+    Glyph.Data = {
+      36030000424D360300000000000036000000280000000F000000100000000100
+      1800000000000003000000000000000000000000000000000000FFFFFFFFFFFF
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF4A7D944A7D94FFFF
+      FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFD69694AD7D84AD7D84AD7D84AD
+      7D84BDA6AD4A7D944AB2DE4AEFFF4A9EBDBDA6ADAD7D84000000FFFFFFFFFFFF
+      FFFFFFF7C3BDFFFBFFFFFBFFFFFBFFE7D7D64A7D944AB2DE4AEFFFDEFFFF4AB2
+      DEFFFBFFAD7D84000000FFFFFFFFFFFFFFFFFFE7B6B5C6CBCEC6CBCEC6CBCE4A
+      7D944AB2DE4AEFFFDEFFFF4AB2DED69694FFFBFFAD7D84000000FFFFFFFFFFFF
+      BDA6ADAD797B84615A8C615A94696B4AB2DE4AEFFFDEFFFF4AB2DED69694D696
+      94FFFBFFAD7D84000000FFFFFFD6A6ADD69694E7CBCEFFE7E7E7C3BDAD7D847B
+      79844AB2DE4AB2DEFFFBFFFFFBFFFFFBFFFFFBFFAD7D84000000FFFFFFE7BEBD
+      FFDFDEFFF3F7E7C7BDE7C3BDFFE7E7AD7D84AD7573D69694D69694D69694D696
+      94FFFBFFAD7D84000000EFBEBDFFEBE7FFE7E7FFF7F7E7C7C6E7C3BDFFEFE7E7
+      C3BD946563D69694D69694D69694D69694FFFBFFAD7D84000000FFBEBDFFFBFF
+      FFE7E7FFF7FFFFF3F7FFF3EFFFEFEFFFEBE784615AFFFBFFFFFBFFFFFBFFFFFB
+      FFFFFBFFAD7D84000000FFC7C6FFF3F7FFE7E7FFFBFFE7CBCEE7CBC6FFF3EFEF
+      CBCEA5716BD69694D69694D69694D69694FFFBFFAD7D84000000E7CFD6FFDBDE
+      FFE7E7FFFBFFE7CFCEE7CBCEFFF3F7D6A2A5BD8684D69694D69694D69694D696
+      94FFFBFFAD7D84000000FFFFFFF7CBCEFFCBCEFFEFEFFFFBFFFFE7E7E7BEBDDE
+      B6B5FFFBFFFFFBFFFFFBFFFFFBFFFFFBFFFFFBFFAD7D84000000FFFFFFFFFFFF
+      E7CFD6FFC3BDFFBEBDFFC7C6F7D7D6FFFBFFFFFBFFFFFBFFFFFBFFD69694D696
+      94D69694D69694000000FFFFFFFFFFFFFFFFFFF7C3BDFFFBFFFFFBFFFFFBFFFF
+      FBFFFFFBFFFFFBFFFFFBFFD69694D69694D69694FFFFFF000000FFFFFFFFFFFF
+      FFFFFFF7C3BDFFFBFFFFFBFFFFFBFFFFFBFFFFFBFFFFFBFFFFFBFFD69694D696
+      94FFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFF7C3BDF7C3BDF7C3BDF7C3BDF7
+      C3BDF7C3BDF7C3BDF7C3BDD69694FFFFFFFFFFFFFFFFFF000000}
+    OnClick = SpeedButton1Click
+  end
+  object btn_entrega: TSpeedButton
+    Left = 595
+    Top = 69
+    Width = 27
+    Height = 22
+    Glyph.Data = {
+      36030000424D3603000000000000360000002800000010000000100000000100
+      18000000000000030000C40E0000C40E00000000000000000000FFFFFFA0A0A0
+      9191919191919191919191919191919191919191919191919191919191919191
+      91919191989898FFFFFFFFFFFF959595BFBFBFC3C3C3C3C3C3C3C3C3C3C3C3C3
+      C3C3C3C3C3C3C3C3C3C3C3C4C4C4C5C5C5C2C2C2959595FFFFFFFFFFFFBCBCBC
+      F0F0F0FBFBFBFCFCFCFCFCFCFCFCFCF9F9F9F6F6F6ECECECD8D8D8E0E0E0FFFF
+      FFF7F7F7C7C7C7FFFFFFFFFFFFC9C9C9FBFBFBFBFBFBFBFBFBFBFBFBFBFBFBF8
+      F8F8F3F3F3EBEBEBDBDBDBFDFDFDE2E2E2FFFFFFCCCCCCFFFFFFFEFEFEC9C9C9
+      FCFCFCFBFBFBFBFBFBFBFBFBAEAEAEF9F9F9BEBEBEE0E0E0DDDDDDFCFCFCFDFD
+      FDE0E0E0CBCBCBFFFFFFFEFEFEC9C9C9FCFCFCFBFBFBFBFBFBFBFBFBAEAEAEFA
+      FAFAE8E8E8BABABAE0E0E0DFDFDFDDDDDDDBDBDBC7C7C7FEFEFEFEFEFEC9C9C9
+      FCFCFCFBFBFBFCFCFCFCFCFCAEAEAEFAFAFAF8F8F8BCBCBCE5E5E5F6F6F6F3F3
+      F3EFEFEFC8C8C8FEFEFEFEFEFEC9C9C9FCFCFCFCFCFCFCFCFCCBCBCBAFAFAFFB
+      FBFBF9F9F9E8E8E8C2C2C2FBFBFBFAFAFAF8F8F8C8C8C8FEFEFEFEFEFEC9C9C9
+      FCFCFCFCFCFCFCFCFCF5F5F5CBCBCBEEEEEECACACAC7C7C7B8B8B8FFFFFFFEFE
+      FEFCFCFCC9C9C9FEFEFEFEFEFEC9C9C9FCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFC
+      FCFCFCFCFCFBFBFBF7F7F7F7F7F7FFFFFFFCFCFCC9C9C9FEFEFEFEFEFE0000DC
+      1313F33B3BE93333E82D2DE72828E32323E11E1EDF1B1BDD1717DC1414DB1111
+      DC0404ED0000DCFEFEFEFEFEFE0000DC0F0FEB2828BD1C1C981F1FBC1E1EDD1B
+      1BDF1616DE1212D70D0DB50808920606B40101E60000DCFEFEFEFEFEFE0000DC
+      0B0BDAA1A1AEE0E0E09F9FAE1414CE1212E10E0EE10909CC9E9EAEE0E0E09E9E
+      AE0000D70000DCFEFEFEFEFEFE0000DC0707D2C4C4D6E3E3E3C4C4D50303D002
+      02ED0202ED0101CFC5C5D6E3E3E3C4C4D60000CF0000DCFEFEFEFFFFFF0000DC
+      0000C7B5B5CBE6E6E6B3B3C90000C70000DC0000DC0000C7B8B8CEE6E6E6B6B6
+      CD0000C70000DCFFFFFFFFFFFFFFFFFFFEFEFEC6C6C6A8A8A8C2C2C2FBFBFBFE
+      FEFEFEFEFEFBFBFBCFCFCFB1B1B1C6C6C6FEFEFEFFFFFFFFFFFF}
+    OnClick = btn_entregaClick
+  end
+  object Label5: TLabel
+    Left = 445
+    Top = 72
+    Width = 50
+    Height = 16
+    Caption = 'Entrega:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Bevel6: TBevel
+    Left = 1
+    Top = 136
+    Width = 752
+    Height = 9
+    Shape = bsTopLine
+  end
+  object Bevel7: TBevel
+    Left = 1
+    Top = 584
+    Width = 752
+    Height = 9
+    Shape = bsTopLine
+  end
+  object Speed_cancelar: TSpeedButton
+    Left = 648
+    Top = 109
+    Width = 97
+    Height = 22
+    Caption = 'Cancelar Pedido'
+    Enabled = False
+    OnClick = Speed_cancelarClick
+  end
+  object RxDBGrid1: TRxDBGrid
+    Left = 6
+    Top = 144
+    Width = 739
+    Height = 433
+    DataSource = DataSource1
+    Options = []
+    TabOrder = 4
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'MS Sans Serif'
+    TitleFont.Style = []
+    OnDrawColumnCell = RxDBGrid1DrawColumnCell
+    OnDblClick = RxDBGrid1DblClick
+    Columns = <
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'codigo'
+        Title.Alignment = taCenter
+        Title.Caption = 'C'#243'digo'
+        Width = 80
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'nome'
+        Title.Caption = 'Produto'
+        Width = 438
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'qtde'
+        Title.Alignment = taCenter
+        Title.Caption = 'Qtde.'
+        Width = 45
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        Title.Alignment = taCenter
+        Width = 80
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'total'
+        Title.Alignment = taCenter
+        Title.Caption = 'Total R$'
+        Width = 70
+        Visible = True
+      end>
+  end
+  object combo_status: TComboBox
+    Left = 56
+    Top = 70
+    Width = 121
+    Height = 21
+    Style = csDropDownList
+    ItemHeight = 13
+    ItemIndex = 0
+    TabOrder = 0
+    Text = 'Em pedido'
+    OnChange = combo_statusChange
+    Items.Strings = (
+      'Em pedido'
+      'Entregue')
+  end
+  object combo_mes: TComboBox
+    Left = 224
+    Top = 70
+    Width = 137
+    Height = 21
+    Style = csDropDownList
+    Enabled = False
+    ItemHeight = 13
+    TabOrder = 1
+    Items.Strings = (
+      'Janeiro'
+      'Fevereiro'
+      'Mar'#231'o'
+      'Abril'
+      'Maio'
+      'Junho'
+      'Julho'
+      'Agosto'
+      'Setembro'
+      'Outubro'
+      'Novembro'
+      'Dezembro')
+  end
+  object edit_ano: TEdit
+    Left = 365
+    Top = 70
+    Width = 34
+    Height = 21
+    Enabled = False
+    MaxLength = 4
+    TabOrder = 2
+    OnKeyPress = edit_anoKeyPress
+  end
+  object DateTimePicker1: TDateTimePicker
+    Left = 500
+    Top = 70
+    Width = 90
+    Height = 21
+    CalAlignment = dtaLeft
+    Date = 40504.019077419
+    Time = 40504.019077419
+    DateFormat = dfShort
+    DateMode = dmComboBox
+    Kind = dtkDate
+    ParseInput = False
+    TabOrder = 3
+  end
+  object Edit1: TEdit
+    Left = 424
+    Top = 112
+    Width = 121
+    Height = 21
+    TabOrder = 5
+    Text = 'Edit1'
+    Visible = False
+  end
+  object DBText1: TDBEdit
+    Left = 64
+    Top = 26
+    Width = 673
+    Height = 20
+    BorderStyle = bsNone
+    Color = clBtnFace
+    Ctl3D = False
+    DataField = 'nome'
+    DataSource = Form14.DataSource1
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clFuchsia
+    Font.Height = -13
+    Font.Name = 'Verdana'
+    Font.Style = [fsBold]
+    ParentCtl3D = False
+    ParentFont = False
+    ReadOnly = True
+    TabOrder = 6
+  end
+  object ADOQuery1: TADOQuery
+    Connection = Login.ADOConnection1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      
+        'select produtos.valor, produtos.codigo, produtos.linha, produtos' +
+        '.nome, pedidos_cliente.qtde, (pedidos_cliente.data_entrega) as d' +
+        'ata_pedido , (pedidos_cliente.qtde*produtos.valor) as total from' +
+        ' produtos '
+      
+        'INNER JOIN pedidos_cliente ON produtos.codigo = pedidos_cliente.' +
+        'codigo_produto '
+      
+        'where (pedidos_cliente.cpf_cliente = "06785243602" and pedidos_c' +
+        'liente.situacao = "Entregue" and MONTH(pedidos_cliente.data_entr' +
+        'ega) = "11" and YEAR(pedidos_cliente.data_entrega) = "2010" ) '
+      
+        'group by produtos.valor, produtos.codigo, produtos.linha, produt' +
+        'os.nome, pedidos_cliente.qtde, pedidos_cliente.data_entrega')
+    Left = 16
+    Top = 592
+    object ADOQuery1codigo: TWideStringField
+      FieldName = 'codigo'
+      Size = 10
+    end
+    object ADOQuery1valor: TWideStringField
+      FieldName = 'valor'
+      Size = 10
+    end
+    object ADOQuery1linha: TWideStringField
+      FieldName = 'linha'
+      Size = 100
+    end
+    object ADOQuery1nome: TWideStringField
+      FieldName = 'nome'
+      Size = 100
+    end
+    object ADOQuery1qtde: TWideStringField
+      FieldName = 'qtde'
+      Size = 3
+    end
+    object ADOQuery1data_pedido: TWideStringField
+      FieldName = 'data_pedido'
+      Size = 10
+    end
+    object ADOQuery1total: TFloatField
+      Alignment = taCenter
+      FieldName = 'total'
+      ReadOnly = True
+      DisplayFormat = 'R$ 0.00'
+    end
+  end
+  object DataSource1: TDataSource
+    DataSet = ADOQuery1
+    Left = 48
+    Top = 592
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 100
+    OnTimer = Timer1Timer
+    Left = 80
+    Top = 592
+  end
+  object ADOQuery2: TADOQuery
+    Connection = Login.ADOConnection1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from pedidos_cliente')
+    Left = 544
+    Top = 104
+    object ADOQuery2cpf_cliente: TWideStringField
+      FieldName = 'cpf_cliente'
+      Size = 11
+    end
+    object ADOQuery2codigo_produto: TWideStringField
+      FieldName = 'codigo_produto'
+      Size = 10
+    end
+    object ADOQuery2data_pedido: TWideStringField
+      FieldName = 'data_pedido'
+      Size = 10
+    end
+    object ADOQuery2situacao: TWideStringField
+      FieldName = 'situacao'
+      Size = 30
+    end
+    object ADOQuery2data_entrega: TWideStringField
+      FieldName = 'data_entrega'
+      Size = 10
+    end
+    object ADOQuery2qtde: TWideStringField
+      FieldName = 'qtde'
+      Size = 3
+    end
+  end
+  object ADOQuery3: TADOQuery
+    Connection = Login.ADOConnection1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from produtos')
+    Left = 576
+    Top = 104
+    object ADOQuery3linha: TWideStringField
+      FieldName = 'linha'
+      Size = 100
+    end
+    object ADOQuery3codigo: TWideStringField
+      FieldName = 'codigo'
+      Size = 10
+    end
+    object ADOQuery3sessao: TWideStringField
+      FieldName = 'sessao'
+      Size = 15
+    end
+    object ADOQuery3nome: TWideStringField
+      FieldName = 'nome'
+      Size = 100
+    end
+    object ADOQuery3valor: TWideStringField
+      FieldName = 'valor'
+      Size = 10
+    end
+    object ADOQuery3pontos: TWideStringField
+      FieldName = 'pontos'
+      Size = 50
+    end
+  end
+  object ADOQuery_cancela: TADOQuery
+    Connection = Login.ADOConnection1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from pedidos_cliente')
+    Left = 680
+    Top = 80
+    object ADOQuery_cancelaCdigo: TAutoIncField
+      FieldName = 'C'#243'digo'
+      ReadOnly = True
+    end
+    object ADOQuery_cancelacpf_cliente: TWideStringField
+      FieldName = 'cpf_cliente'
+      Size = 11
+    end
+    object ADOQuery_cancelacodigo_produto: TWideStringField
+      FieldName = 'codigo_produto'
+      Size = 10
+    end
+    object ADOQuery_canceladata_pedido: TWideStringField
+      FieldName = 'data_pedido'
+      Size = 10
+    end
+    object ADOQuery_cancelasituacao: TWideStringField
+      FieldName = 'situacao'
+      Size = 30
+    end
+    object ADOQuery_canceladata_entrega: TWideStringField
+      FieldName = 'data_entrega'
+      Size = 10
+    end
+    object ADOQuery_cancelaqtde: TWideStringField
+      FieldName = 'qtde'
+      Size = 3
+    end
+  end
+end

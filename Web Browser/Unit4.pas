@@ -1,0 +1,377 @@
+unit Unit4;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, OleCtrls, SHDocVw, IdBaseComponent, IdComponent,
+  IdTCPConnection, IdTCPClient, IdHTTP, Httpapp, ShellAPI, MsHtml, ExtCtrls, Registry,
+  Gauges, DB, ADODB; //Esse ultimo eh pro  IHTMLDocument2
+
+type
+  TForm4 = class(TForm)
+    WebBrowser1: TWebBrowser;
+    Memo1: TMemo;
+    Button3: TButton;
+    Button4: TButton;
+    Gauge1: TGauge;
+    Button5: TButton;
+    Memo2: TMemo;
+    Memo3: TMemo;
+    Button6: TButton;
+    Memo4: TMemo;
+    Button7: TButton;
+    Button8: TButton;
+    Memo5: TMemo;
+    ADOConnection1: TADOConnection;
+    ADOQuery1: TADOQuery;
+    Button1: TButton;
+    ADOQuery1Cdigo: TAutoIncField;
+    ADOQuery1linha: TWideStringField;
+    ADOQuery1codigo: TWideStringField;
+    ADOQuery1sessao: TWideStringField;
+    ADOQuery1nome: TWideStringField;
+    ADOQuery1valor: TWideStringField;
+    ADOQuery1pontos: TWideStringField;
+    procedure FormShow(Sender: TObject);
+    procedure WebBrowser1DocumentComplete(Sender: TObject;
+      const pDisp: IDispatch; var URL: OleVariant);
+    procedure WebBrowser1BeforeNavigate2(Sender: TObject;
+      const pDisp: IDispatch; var URL, Flags, TargetFrameName, PostData,
+      Headers: OleVariant; var Cancel: WordBool);
+    procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
+    procedure Button7Click(Sender: TObject);
+    procedure Button8Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    function Captura(s: string): string;
+    //function StrIsFloat(const S: string): boolean;
+  end;
+
+//Constante para ser acima de 255 caracteres
+const
+erro_login : string = '/wEPDwUKMTE4NzkzMTU0Mw9kFgQCAQ9kFgQCAw8WAh4EVGV4dAVIPGxpbmsgcmVs' + 'PSJzdHlsZXNoZWV0IiB0eXBlPSJ0ZXh0L2NzcyIgaHJlZj0iL0xvZ' + '2luL21lZGlhL0JSL0xvZ2luLmNzcyI+ZAIEDxUBBFRydWVkAgMPZBYMAgMPF' + 'gIeC18hSXRlbUNvdW50ZmQCBQ8WAh4HVmlzaWJsZWhkAgcPEA8WBB4LXyFEYXRhQm91bmR' + 'nHwJoZGQWAWZkAgkPDxYCHwAFFkPDs2RpZ28gZGUgQ29uc3V' + 'sdG9yYTpkZAILDw8WAh8ABQZTZW5oYTpkZAIRDw8WAh8ABYMBDQogICAgICBPIG7Du' + 'm1lcm8gZGUgQ29uc3VsdG9yYSBxdWUgaW50cm9kdXppdSBuw6NvIMOpIHbDoWxpZ' + 'G8uIFZlcmlmaXF1ZSBwb3IgZmF2b3Igc2UgaW50cm9kdXppdSBvIHNldSBuw7ptZXJvIGNvcnJldG' + 'FtZW50ZS4NCiAgICBkZGRm9lPSsyS2lNDzBZLCvVv19lzUzA==';
+
+var
+  Form4: TForm4;
+  controle: String;
+
+implementation
+
+{$R *.dfm}
+
+function StrIsInteger(const S: string): boolean;
+begin
+try
+StrToInt(S);
+Result := true;
+except
+Result := false;
+end;
+end;
+
+
+function TForm4.Captura(s: string): string;
+var
+  start, stop: byte; s2: string;
+begin
+while (Pos('[b]SECTION 1',s) <> 0)  do
+  begin
+    start:= Pos('SECTION 1', s);
+    stop:= Pos('Todos os preços são sugeridos para varejo.', s);
+    S2:=S2+''+Copy(s, start, stop - start);
+    Result:= Uppercase(s2);
+  end;
+end;
+
+
+procedure TForm4.FormShow(Sender: TObject);
+begin
+//  WebBrowser1.Navigate('https://www.marykayintouch.com.br/login/login.aspx');
+end;
+
+procedure TForm4.WebBrowser1DocumentComplete(Sender: TObject;
+  const pDisp: IDispatch; var URL: OleVariant);
+var
+FormItem: Variant;
+Field: Variant;
+FieldName: String;
+I,J: Integer;
+begin
+ if (controle = 'OnDocumentComplete') then
+ begin
+        if WebBrowser1.OleObject.Document.all.tags('form').Length = 0 then
+        Exit;
+                for I := 0 to WebBrowser1.OleObject.Document.forms.Length - 1 do
+                begin
+                FormItem := WebBrowser1.OleObject.Document.forms.Item(I);
+                  try
+                  for j := 0 to FormItem.Length - 1 do
+                  begin
+                  //Identifica o campo e seu nome no formulário
+                  Field := FormItem.Item(j);
+                  FieldName := Field.Name;
+
+                  if FieldName = 'txtConsultantID' then // nome do input para o campo CNPJ
+                  Field.Value := '166799br';
+                  if FieldName = 'txtPassword' then // nome do input para o campo Inscr.Estadual
+                  Field.Value := 'vi145263';
+
+                  //Abaixo Loga automatico
+                  //Caso dê erro de login ou erro de senha (são Values diferentes)
+                  if ( (Field.Value = erro_login) or (Field.Value = '/wEWBgK+6afRAQLApJmxDAK1qbSRCwLCi9reAwLa5//eAwKGxZ2yDz9yT358ZOCmQKBSk4befm2iQnI7') ) then
+                  begin
+                  Gauge1.Progress:=0;
+                  showmessage('Login ou senha inválidos');
+                  controle:='OnBeforeNavigate2';
+                  end
+                   else if (FieldName = 'txtConsultantID') then
+                   begin
+                    WebBrowser1.Navigate('javascript:__doPostBack("btnSubmit","")');
+                    Gauge1.Progress:=25;
+                   end;
+
+                    //Caso o acesso tenha sido bloqueado
+                    //Abaixo para o site https://www.marykayintouch.com.br/login/Errors/AccountLocked.aspx
+                    if Field.Value = '/wEPDwUJMzEwNTg1MDQwD2QWAmYPZBYCAgEPZBYCAgQPFgIeBFRleHQFSjxsaW5rIHJlbD0ic3R5bGVzaGVldCIgdHlwZT0idGV4dC9jc3MiIGhyZWY9Ii9Mb2dpbi9tZWRpYS9CUi9JblRvdWNoLmNzcyI+ZGTBTrKEnKMCBP9CldBqDDwPTWhWxg==' then
+                    begin
+                    showmessage('Sua conta está suspensa por algum tempo, verifique seu acesso no site MaryKay');
+                    Gauge1.Progress:=0;
+                    end
+
+                    else if FieldName = 'ctl00$ContentPlaceHolder1$PageTemplate$HidCulture' then
+                    begin
+                    WebBrowser1.Navigate('http://applications.marykayintouch.com.br/OnlineOrdering/default.aspx');
+                    Gauge1.Progress:=50;
+                    end
+                    else if Field.Value = '/wEWBgK71a34CQKxuuH8DwLQuuH8DwLvuuH8DwKjl+TFDAL9qJObCg==' then
+                    begin
+                    WebBrowser1.Navigate('javascript:__doPostBack("_ctl0$content$leftOptions$c$c0$i2$_ctl0","")');
+                    Gauge1.Progress:=75;
+                    end
+                    else if FieldName = '__LASTFOCUS' then
+                    begin
+                    WebBrowser1.Navigate('http://applications.marykayintouch.com.br/OnlineOrdering/ProductSelectionall.aspx?catid=all&type=ConsultantOnePage');
+                    Gauge1.Progress:=85;
+                    end
+
+                    //Abaixo copia para o Memo1 a lista
+                    else if FieldName = '__SCROLLPOSITIONX' then
+                    begin
+                    Memo1.Clear;
+                    Memo1.Text := WebBrowser1.OleObject.Document.DocumentElement.InnerText;
+                    Gauge1.Progress:=100;
+                    end;
+
+                  end;
+                  except
+                  ShowMessage('Não foi possível atualizar, entre em contato com o administrador do sistema');
+                  end;
+                end;
+ end
+ else
+ WebBrowser1.Stop;
+
+end;
+
+
+procedure TForm4.WebBrowser1BeforeNavigate2(Sender: TObject;
+  const pDisp: IDispatch; var URL, Flags, TargetFrameName, PostData,
+  Headers: OleVariant; var Cancel: WordBool);
+begin
+if controle <> 'OnBeforeNavigate2' then
+controle := 'OnDocumentComplete';
+end;
+
+procedure TForm4.Button4Click(Sender: TObject);
+begin
+controle := 'OnDocumentComplete';
+WebBrowser1.Navigate('https://www.marykayintouch.com.br/login/login.aspx');
+end;
+
+procedure TForm4.Button5Click(Sender: TObject);
+var
+i:integer;
+s:String;
+begin
+Memo2.Clear;
+for i:= 14 to Memo1.Lines.Count -1 do
+  begin
+    s:= Captura(Memo1.Lines[i]);
+
+     if StrIsInteger(copy(Memo1.Lines[i],1,1)) = False then
+       if (copy(Memo1.Lines[i],1,6) <> 'Código')
+      and (copy(Memo1.Lines[i],1,1) <> '')
+      and (copy(Memo1.Lines[i],1,42) <> 'Todos os preços são sugeridos para varejo.')
+      and (copy(Memo1.Lines[i],1,10) <> '    Página')
+      and (copy(Memo1.Lines[i],1,27) <> 'Exibir diretrizes de pedido')
+      then
+     Memo2.Lines.Add(Memo1.Lines[i]);
+
+    if StrIsInteger(copy(Memo1.Lines[i],1,1)) = True then
+    Memo2.Lines.Add(Memo1.Lines[i]);
+
+  end;
+
+end;
+
+procedure TForm4.Button6Click(Sender: TObject);
+var
+i:integer;
+s:String;
+begin
+Memo3.Clear;
+for i:= 0 to Memo2.Lines.Count -1 do
+  begin
+    s:= Captura(Memo2.Lines[i]);
+
+     if StrIsInteger(copy(Memo2.Lines[i],1,1)) = False then
+     Memo3.Lines.Add(Memo2.Lines[i]);
+
+
+  end;
+
+end;
+
+procedure TForm4.Button7Click(Sender: TObject);
+var
+i:integer;
+s:String;
+begin
+Memo4.Clear;
+for i:= 0 to Memo2.Lines.Count -1 do
+  begin
+    s:= Captura(Memo2.Lines[i]);
+
+     if StrIsInteger(copy(Memo2.Lines[i],1,1)) = True then
+     Memo4.Lines.Add(Memo2.Lines[i]);
+
+
+  end;
+
+end;
+
+procedure TForm4.Button8Click(Sender: TObject);
+var
+i:integer;
+s,sub,susu: string;
+begin
+Memo5.Clear;
+  for i:= 0 to Memo2.Lines.Count -1 do
+  begin
+
+      if (copy(Memo2.Lines[i],1,9) <> 'SECTION 1')
+     and (copy(Memo2.Lines[i],1,9) <> 'SECTION 2')
+     then
+     begin
+
+     //Aqui são os nomes das coleções
+     if StrIsInteger(copy(Memo2.Lines[i],1,1)) = False then
+     begin
+     s:=Memo2.Lines[i];
+         if StrIsInteger(copy(Memo2.Lines[i+1],1,1)) = False then
+         sub:=s;
+             if StrIsInteger(copy(Memo2.Lines[i+2],1,1)) = False then
+             susu:=sub;
+     end;
+        //Aqui são os nomes dos Produtos por CÓDIGO
+        if StrIsInteger(copy(Memo2.Lines[i],1,1)) = True then
+        begin
+           //Memo5.Lines.Add(sub+ '('+s+') - '+Memo2.Lines[i]);
+          if susu = sub then
+          susu:='';
+
+          if (sub = '') then
+          Memo5.Lines.Add(s+' - '+Memo2.Lines[i])
+
+          else if (susu = '') then
+          Memo5.Lines.Add(sub+ '('+s+') - '+Memo2.Lines[i])
+
+          else
+          Memo5.Lines.Add(susu+'-'+sub+ '('+s+') - '+Memo2.Lines[i]);
+
+
+
+        end; //IF StrIsInteger
+     
+     end;//IF COPY
+
+  end; //FOR
+
+end;
+
+procedure TForm4.Button1Click(Sender: TObject);
+var
+i:integer;
+s,sub,susu: string;
+begin
+Memo5.Clear;
+
+
+  for i:= 0 to Memo2.Lines.Count -1 do
+  begin
+
+      if (copy(Memo2.Lines[i],1,9) <> 'SECTION 1')
+     and (copy(Memo2.Lines[i],1,9) <> 'SECTION 2')
+     then
+     begin
+
+     //Aqui são os nomes das coleções
+     if StrIsInteger(copy(Memo2.Lines[i],1,1)) = False then
+     begin
+     s:=Memo2.Lines[i];
+         if StrIsInteger(copy(Memo2.Lines[i+1],1,1)) = False then
+         sub:=s;
+             if StrIsInteger(copy(Memo2.Lines[i+2],1,1)) = False then
+             susu:=sub;
+     end;
+        //Aqui são os nomes dos Produtos por CÓDIGO
+        if StrIsInteger(copy(Memo2.Lines[i],1,1)) = True then
+        begin
+           //Memo5.Lines.Add(sub+ '('+s+') - '+Memo2.Lines[i]);
+          if susu = sub then
+          susu:='';
+
+          //Banco de Dados em Modo de Adicionar Registro
+          ADOQuery1.Append;
+
+          if (sub = '') then
+          ADOQuery1linha.Text:=s
+          else if (susu = '') then
+          ADOQuery1linha.Text:=sub + ' - ' +s
+          else
+          ADOQuery1linha.Text:=susu+' - '+sub+' - '+s;
+
+          //Abaixo grava no Banco de Dados
+          ADOQuery1codigo.Text:=Copy(Memo2.Lines[i],1,8);
+
+          if pos('R$',Memo2.Lines[i])>0 then
+          ADOQuery1nome.Text:=Copy(Memo2.Lines[i],9,pos('R$',Memo2.Lines[i])-10);
+
+          ADOQuery1valor.Text:=Copy(Memo2.Lines[i],pos('R$',Memo2.Lines[i]),pos(' / ',Memo2.Lines[i])-pos('R$',Memo2.Lines[i]));
+
+          ADOQuery1pontos.Text:=Copy(Memo2.Lines[i],pos(' / ',Memo2.Lines[i])+3,(pos('Pts',Memo2.Lines[i])-pos(' / ',Memo2.Lines[i]))-4);
+
+          if ADOQuery1pontos.Text = '0' then
+          ADOQuery1sessao.Text:='SECTION 2'
+          else
+          ADOQuery1sessao.Text:='SECTION 1';
+
+          ADOQuery1.Post;
+
+        end; //IF StrIsInteger
+
+     end;//IF COPY
+
+  end; //FOR
+
+
+end;
+
+
+end.
