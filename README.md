@@ -68,7 +68,7 @@ Ao concluir um pedido, o sistema:
 </ul>
 
 <p>
-O sistema também realiza bloqueios automáticos quando há risco de estoque insuficiente. :contentReference[oaicite:0]{index=0}
+O sistema também realiza bloqueios automáticos quando há risco de estoque insuficiente.
 </p>
 
 ---
@@ -94,7 +94,7 @@ Entre os itens controlados:
 </ul>
 
 <p>
-O sistema monitora limites mínimos automaticamente e impede operações que comprometam a produção. :contentReference[oaicite:1]{index=1}
+O sistema monitora limites mínimos automaticamente e impede operações que comprometam a produção.
 </p>
 
 ---
@@ -110,7 +110,7 @@ O sistema monitora limites mínimos automaticamente e impede operações que com
 </ul>
 
 <p>
-As movimentações financeiras são refletidas automaticamente conforme novos pedidos são registrados. :contentReference[oaicite:2]{index=2}
+As movimentações financeiras são refletidas automaticamente conforme novos pedidos são registrados.
 </p>
 
 ---
@@ -126,7 +126,7 @@ As movimentações financeiras são refletidas automaticamente conforme novos pe
 </ul>
 
 <p>
-O sistema possui também recursos de pontuação e níveis para clientes ou usuários específicos. :contentReference[oaicite:3]{index=3}
+O sistema possui também recursos de pontuação e níveis para clientes ou usuários específicos.
 </p>
 
 ---
@@ -142,7 +142,7 @@ O sistema possui também recursos de pontuação e níveis para clientes ou usu�
 </ul>
 
 <p>
-As exportações criam planilhas formatadas automaticamente com dados operacionais e financeiros. :contentReference[oaicite:4]{index=4}
+As exportações criam planilhas formatadas automaticamente com dados operacionais e financeiros.
 </p>
 
 ---
@@ -209,7 +209,7 @@ A interface foi construída seguindo o padrão clássico de aplicações comerci
 </ul>
 
 <p>
-O sistema possuía diversos módulos independentes carregados dinamicamente pela aplicação principal. :contentReference[oaicite:6]{index=6}
+O sistema possuía diversos módulos independentes carregados dinamicamente pela aplicação principal.
 </p>
 
 ---
